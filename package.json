@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www.js"
+    "start": "node ./bin/www.js",
+    "dev": "nodemon ./bin/www.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -14,6 +15,7 @@
     "express-form-data": "^2.0.19",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "sequelize": "^6.28.0"
   }

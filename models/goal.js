@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 5000
     },
     beginDate: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       defaultValue: new Date(new Date()).toLocaleString([], {
         weekday: "long",
         month: 'short', day: 'numeric', year: 'numeric'

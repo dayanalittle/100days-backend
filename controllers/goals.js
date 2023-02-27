@@ -4,14 +4,8 @@ const create = async (req, res) => {
   try {
     console.log("CREATE", req.body);
 
-    req.body.goalId = req.user.profileId
-    const goal = await Goal.create(req.body)
-    const profile = await Profile.findByIdAndUpdate(
-      req.user.profile,
-      { $push: { goals: goal } },
-      { new: true }
-    )
-    goal.author = profile
+    const goal = await Goal.build({ userId: req.body.userId })
+
     res.status(201).json(goal)
   } catch (error) {
     console.log(error);
@@ -22,16 +16,16 @@ const index = async (req, res) => {
   try {
     console.log("INDEX", req.body);
 
-    const goals = await Goal.find({})
-      // .populate('author')
-      .sort({ CreatedAt: 'desc' })
+    const goals = await Goal.findAll()
+    // .populate('author')
+    // .sort({ createdAt: 'desc' })
     res.status(200).json(goals)
   } catch (error) {
     res.status(500).json(error)
   }
 }
 
-async function update(req, res) {
+const update = async (req, res) => {
   try {
     console.log("UPDATE", req.body);
     const goal = await Goal.update(
@@ -45,11 +39,21 @@ async function update(req, res) {
   }
 }
 
+const deleteGoal = async (req, res) => {
+  try {
+    const deletedGoal = await Goal.destroy(
+      { where: { id: req.params.id } }
+    )
+    res.status(200).json(deletedGoal)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
 
 module.exports = {
   create,
   index,
   update,
-  
+  deleteGoal
 }
 

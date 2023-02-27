@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasOne(models.Profile, { as: 'profile', foreignKey: 'userId' })
+      User.hasOne(models.Goal, { as: 'goal', foreignKey: 'userId' })
     }
 
     comparePassword(tryPassword, cb) {

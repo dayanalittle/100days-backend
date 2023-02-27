@@ -4,6 +4,8 @@ const { Model } = require('sequelize')
 const today = new Date();
 const hundredDaysFromToday = today.setDate(today.getDate() + 100);
 
+
+
 module.exports = (sequelize, DataTypes) => {
   class Goal extends Model {
     static associate(models) {
